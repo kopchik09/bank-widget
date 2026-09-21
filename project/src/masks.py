@@ -7,6 +7,7 @@ def get_mask_card_number(clean_number):
             masked_number[i : i + 4] for i in range(0, len(masked_number), 4)
         )
     else:
+        # print("Напишите номер карты правильно")
         return f"Напишите номер счета правильно/n {get_mask_card_number(input())}"
 
 
