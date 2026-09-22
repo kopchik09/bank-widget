@@ -2,7 +2,7 @@ def filter_by_state(transactions, state="EXECUTED"):
     return [i for i in transactions if i.get("state") == state]
 
 def sort_by_date(list, method=True):
-    return sorted(list, key=lambda x:x["date"])
+    return sorted(list, key=lambda x:x["date"], reverse=method)
 list = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
     {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
