@@ -2,6 +2,7 @@ from masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(card):
+
     if card[0:4] == "Счет":
         return f"{card.split()[0]} **{card[-4:]}"
     else:
