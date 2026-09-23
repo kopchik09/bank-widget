@@ -12,7 +12,7 @@ def filter_by_state(transactions, state="EXECUTED"):
     return [i for i in transactions if i.get("state") == state]
 
 
-def sort_by_date(list, method=True):
+def sort_by_date(transactions, method=True):
     """
     Сортирует список транзакций по дате в формате ISO (YYYY-MM-DD...).
 
@@ -26,11 +26,11 @@ def sort_by_date(list, method=True):
     Returns:
         Новый список транзакций, отсортированный по полю "date".
     """
-    return sorted(list, key=lambda x: x["date"], reverse=method)
+    return sorted(transactions, key=lambda x: x["date"], reverse=method)
 
 
 # пример списка словарей
-list = [
+lists = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
     {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
     {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
