@@ -1,0 +1,6 @@
+my_function ok
+my_function error: TypeError. Inputs: (1, 'a'), {}
+my_function ok
+my_function ok
+my_function ok
+my_function ok
