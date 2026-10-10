@@ -38,3 +38,4 @@ def get_transaction_amount_rub(transaction: dict[str, Any]) -> float:
         return convert_to_rub(amount, currency)
 
     raise ValueError(f"Неподдерживаемая валюта: {currency}")
+
