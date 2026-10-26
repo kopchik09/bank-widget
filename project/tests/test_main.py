@@ -2,8 +2,8 @@ from typing import Any
 
 import pytest
 
-import main as main_module
-from main import ask_status, ask_yes_no, format_amount, format_operation
+import src.main as main_module
+from src.main import ask_status, ask_yes_no, format_amount, format_operation
 
 TRANSACTIONS: list[dict[str, Any]] = [
     {

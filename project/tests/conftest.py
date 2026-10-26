@@ -2,7 +2,7 @@ import pytest
 
 
 @pytest.fixture
-def transactions_generator():
+def transactions_generator_for_processing():
     return [
         {"id": 1, "state": "EXECUTED", "date": "2024-03-11T10:00:00"},
         {"id": 2, "state": "CANCELED", "date": "2023-12-01T12:30:00"},

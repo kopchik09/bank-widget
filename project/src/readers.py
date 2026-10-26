@@ -1,4 +1,5 @@
 import csv
+import zipfile
 from typing import Any
 
 from openpyxl import load_workbook
@@ -36,7 +37,7 @@ def read_xlsx(path: str) -> list[dict[str, Any]]:
     """Читает транзакции из XLSX-файла (первая строка — заголовки). При проблеме возвращает []."""
     try:
         workbook = load_workbook(path, read_only=True, data_only=True)
-    except (OSError, ValueError, KeyError):
+    except (OSError, ValueError, KeyError, zipfile.BadZipFile):
         return []
 
     sheet = workbook.active

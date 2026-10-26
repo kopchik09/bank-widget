@@ -14,11 +14,10 @@ def test_get_mask_card_number(number, expected):
     assert get_mask_card_number(number) == expected
 
 
-def test_get_mask_card_number_invalid_uses_new_input(monkeypatch):
-    monkeypatch.setattr("builtins.input", lambda: "1234567890123456")
-    assert get_mask_card_number("123") == (
-        "Напишите номер счета правильно/n 1234 56** **** 3456"
-    )
+@pytest.mark.parametrize("number", ["123", "123412341234123X", ""])
+def test_get_mask_card_number_invalid_uses_new_input(number):
+    with pytest.raises(ValueError, match="Номер карты должен состоять из 16 цифр"):
+        get_mask_card_number(number)
 
 
 @pytest.mark.parametrize(
@@ -32,7 +31,7 @@ def test_get_mask_card_number_invalid_uses_new_input(monkeypatch):
 def test_get_mask_account(number, expected):
     assert get_mask_account(number) == expected
 
-
-def test_get_mask_account_invalid_uses_new_input(monkeypatch):
-    monkeypatch.setattr("builtins.input", lambda: "1234567890123456")
-    assert get_mask_account("123") == "Напишите номер счета правильно/n **3456"
+@pytest.mark.parametrize("number", ["123", "12A4", ""])
+def test_get_mask_account_invalid_uses_new_input(number):
+    with pytest.raises(ValueError, match="Номер счёта должен содержать минимум 4 цифры"):
+        get_mask_account(number)

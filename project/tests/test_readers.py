@@ -4,16 +4,42 @@ from typing import Any
 
 from openpyxl import Workbook
 
-from src.readers import read_csv, read_xlsx
+from project.src.readers import read_csv, read_xlsx
 
 HEADER = [
-    "id", "state", "date", "amount", "currency_name", "currency_code", "from", "to", "description",
+    "id",
+    "state",
+    "date",
+    "amount",
+    "currency_name",
+    "currency_code",
+    "from",
+    "to",
+    "description",
 ]
 ROWS: list[list[Any]] = [
-    [1, "EXECUTED", "2019-12-08T22:46:21", "40542", "Russian Ruble", "RUB", "",
-     "Счет 90424923579946435907", "Открытие вклада"],
-    [2, "PENDING", "2019-11-12T20:30:00", "130", "US Dollar", "USD",
-     "MasterCard 7771270000003727", "Visa Platinum 1293380000009203", "Перевод с карты на карту"],
+    [
+        1,
+        "EXECUTED",
+        "2019-12-08T22:46:21",
+        "40542",
+        "Russian Ruble",
+        "RUB",
+        "",
+        "Счет 90424923579946435907",
+        "Открытие вклада",
+    ],
+    [
+        2,
+        "PENDING",
+        "2019-11-12T20:30:00",
+        "130",
+        "US Dollar",
+        "USD",
+        "MasterCard 7771270000003727",
+        "Visa Platinum 1293380000009203",
+        "Перевод с карты на карту",
+    ],
 ]
 
 
@@ -89,7 +115,22 @@ def test_read_xlsx_converts_rows(tmp_path: Path) -> None:
 
 def test_read_xlsx_numeric_amount_becomes_string(tmp_path: Path) -> None:
     file = tmp_path / "ops.xlsx"
-    make_xlsx(file, [[1, "EXECUTED", "2019-12-08T22:46:21", 40542.5, "Ruble", "RUB", "", "", "Вклад"]])
+    make_xlsx(
+        file,
+        [
+            [
+                1,
+                "EXECUTED",
+                "2019-12-08T22:46:21",
+                40542.5,
+                "Ruble",
+                "RUB",
+                "",
+                "",
+                "Вклад",
+            ]
+        ],
+    )
 
     assert read_xlsx(str(file))[0]["operationAmount"]["amount"] == "40542.5"
 
